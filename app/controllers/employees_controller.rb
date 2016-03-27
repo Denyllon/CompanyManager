@@ -14,17 +14,21 @@ class EmployeesController < ApplicationController
 
   # GET /employees/new
   def new
+    @company = Company.find(params[:company_id])
     @employee = Employee.new
   end
 
   # GET /employees/1/edit
   def edit
+    @company = Company.find(params[:company_id])
+    @employee = Employee.find(params[:id])
   end
 
   # POST /employees
   # POST /employees.json
   def create
-    @employee = Employee.new(employee_params)
+    @company = Company.find(params[:company_id])
+    @employee = @company.employees.new(employee_params)
 
     respond_to do |format|
       if @employee.save

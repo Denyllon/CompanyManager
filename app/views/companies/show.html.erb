@@ -10,5 +10,9 @@
   <%= @company.description %>
 </p>
 
+<p>
+  <%= link_to 'Add Employee', new_company_employee_path(@company), :class => "btn btn-success" %>
+</p>
+
 <%= link_to 'Edit', edit_company_path(@company) %> |
 <%= link_to 'Back', companies_path %>
