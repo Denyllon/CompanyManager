@@ -9,7 +9,21 @@
   <strong>Description:</strong>
   <%= @company.description %>
 </p>
-
+<h3>
+  Employees of <%= @company.name %>
+</h3>
+<table class="table">
+  <tr>
+    <th>Employee:</th>
+    <th>Job:</th>
+  </tr>
+  <% @company.employees.each do |employee| %>
+  <tr>
+    <td><%= link_to employee.name, edit_company_employee_path(@company, employee) %></td>
+    <td><%= employee.job %></td>
+  </tr>
+  <% end %>
+</table>
 <p>
   <%= link_to 'Add Employee', new_company_employee_path(@company), :class => "btn btn-success" %>
 </p>
