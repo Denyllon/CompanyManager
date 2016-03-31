@@ -10,5 +10,5 @@
   <%= @employee.job %>
 </p>
 
-<%= link_to 'Edit', edit_employee_path(@employee) %> |
-<%= link_to 'Back', employees_path %>
+<%= link_to 'Edit', edit_company_employee_path(@company, @employee) %> |
+<%= link_to 'Back', company_path(@company) %>
