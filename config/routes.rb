@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :employees
+  resources :employees, only: :index
   root to: 'companies#index'
 
   resources :companies do
