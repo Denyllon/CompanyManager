@@ -24,9 +24,6 @@
   </tr>
   <% end %>
 </table>
-<p>
-  <%= link_to 'Add Employee', new_company_employee_path(@company), :class => "btn btn-primary" %>
-</p>
-
-<%= link_to 'Edit', edit_company_path(@company), class: "btn btn-default" %>
+<%= link_to 'Add Employee', new_company_employee_path(@company), :class => "btn btn-primary" %>
+<%= link_to 'Edit Company', edit_company_path(@company), class: "btn btn-default" %>
 <%= link_to 'Back', companies_path, class: "btn btn-default" %>
