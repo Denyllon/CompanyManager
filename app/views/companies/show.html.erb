@@ -1,17 +1,12 @@
 <!--<p id="notice"><%= notice %></p>
 -->
-<p>
-  <strong>Name:</strong>
-  <%= @company.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @company.description %>
-</p>
-<h3>
+<h1>
+  <strong><%= @company.name %></strong> - <%= @company.description %>
+</h1>
+<br />
+<h4>
   Employees of <%= @company.name %>
-</h3>
+</h4>
 <table class="table">
   <tr>
     <th>Employee:</th>
@@ -25,5 +20,6 @@
   <% end %>
 </table>
 <%= link_to 'Add Employee', new_company_employee_path(@company), :class => "btn btn-primary" %>
-<%= link_to 'Edit Company', edit_company_path(@company), class: "btn btn-default" %>
-<%= link_to 'Back', companies_path, class: "btn btn-default" %>
+ | <%= link_to 'Edit Company', edit_company_path(@company), class: "btn btn-default" %>
+<%= link_to 'Delete Company', @company, method: :delete, data: { confirm: 'Are You really sure to delete this company?' }, :class => "btn btn-danger" %>
+ | <%= link_to 'Back', companies_path, class: "btn btn-default" %>

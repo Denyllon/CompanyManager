@@ -1,9 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <% if user_signed_in? %>
-<h1>Listing Companies</h1>
+  <% if !user_has_companies(current_user) %>
+    <h3>To add company, click the button below</h3><br />
+    <%= link_to 'New Company', new_company_path, :class => "btn btn-primary" %>
+  <% else %>
+<h1>Your Companies</h1>
 
-<table class="table-bordered">
+<table class="table">
   <thead>
     <tr>
       <th>Name</th>
@@ -14,12 +18,11 @@
 
   <tbody>
     <% @companies.each do |company| %>
-      <% if current_user = company.user %>
+      <% if current_user == company.user %>
         <tr>
           <td><%= link_to company.name, company %></td>
           <td><%= company.description %></td>
-          <td><%= link_to 'Edit', edit_company_path(company), :class => "btn btn-default" %>
-              <%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %></td>
+          <td><%= link_to 'Edit', edit_company_path(company), :class => "btn btn-default" %></td>
         </tr>
       <% end %>
     <% end %>
@@ -27,6 +30,7 @@
 </table>
 <br>
 <%= link_to 'New Company', new_company_path, :class => "btn btn-primary" %>
+<% end %>
 <% else %>
   <h1>Welcome to Company Manager</h1>
   <h3>To start manage Your companies, please:</h3>

@@ -59,7 +59,7 @@
               <li class="<%= active_class(employees_path) %>"><%= link_to "Employees", employees_path %></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              <li><%= link_to current_user.email, edit_user_registration_path %></li>
+              <li class="<%= active_class(edit_user_registration_path) %>"><%= link_to current_user.email, edit_user_registration_path %></li>
               <li><%= link_to 'Log Out', destroy_user_session_path, method: :delete %></li>
             </ul>
           <% else %>
