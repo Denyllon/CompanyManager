@@ -1,6 +1,7 @@
 class CompaniesController < ApplicationController
   before_action :set_company, only: [:show, :edit, :update, :destroy]
-
+  before_filter :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_filter :owns_company, only: [:edit, :update, :destroy]
   # GET /companies
   # GET /companies.json
   def index
@@ -70,5 +71,11 @@ class CompaniesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def company_params
       params.require(:company).permit(:name, :description)
+    end
+
+    def owns_company
+      if !user_signed_in? || current_user != Company.find(params[:id]).user
+        redirect_to companies_path, error: "You don't have permissions"
+      end
     end
 end
