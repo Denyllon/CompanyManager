@@ -2,4 +2,4 @@
 
 <%= render 'form' %>
 <br />
-<%= link_to 'Back', companies_path, class: "btn btn-default" %>
+<%= link_to 'Back', session.delete(:return_to), class: "btn btn-default" %>

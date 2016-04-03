@@ -24,6 +24,7 @@ class EmployeesController < ApplicationController
   def edit
     @company = Company.find(params[:company_id])
     @employee = Employee.find(params[:id])
+    session[:return_to] ||= request.referer
   end
 
   # POST /employees
@@ -49,7 +50,7 @@ class EmployeesController < ApplicationController
     @company = Company.find(params[:company_id])
     respond_to do |format|
       if @employee.update(employee_params)
-        format.html { redirect_to @company, notice: 'Employee was successfully updated.' }
+        format.html { redirect_to session.delete(:return_to), notice: 'Employee was successfully updated.' }
         format.json { render :show, status: :ok, location: @employee }
       else
         format.html { render :edit }

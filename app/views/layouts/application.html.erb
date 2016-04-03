@@ -53,17 +53,21 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="navbar-collapse collapse navbar-responsive-collapse">
-          <ul class="nav navbar-nav">
-            <% if user_signed_in? %>
+          <% if user_signed_in? %>
+            <ul class="nav navbar-nav navbar-left">
+              <li class="<%= active_class(companies_path) %>"><%= link_to "Companies", companies_path %></li>
+              <li class="<%= active_class(employees_path) %>"><%= link_to "Employees", employees_path %></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
               <li><%= link_to current_user.email, edit_user_registration_path %></li>
               <li><%= link_to 'Log Out', destroy_user_session_path, method: :delete %></li>
-            <% else %>
+            </ul>
+          <% else %>
+            <ul class="nav navbar-nav navbar-right">
               <li><%= link_to 'Sign In', new_user_registration_path %></li>
               <li><%= link_to 'Log In', new_user_session_path %></li>
-            <% end %>
-            <li class="<%= active_class(companies_path) %>"><%= link_to "Companies", companies_path %></li>
-            <li class="<%= active_class(employees_path) %>"><%= link_to "Employees", employees_path %></li>
-          </ul>
+            </ul>
+          <% end %>
         </div><!-- /.navbar-collapse -->
       </div>
     </nav>
