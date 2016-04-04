@@ -32,7 +32,7 @@ class EmployeesController < ApplicationController
   def create
     @company = Company.find(params[:company_id])
     @employee = @company.employees.new(employee_params)
-
+    @employee.user = current_user
     respond_to do |format|
       if @employee.save
         format.html { redirect_to @company, notice: 'Employee was successfully created.' }
