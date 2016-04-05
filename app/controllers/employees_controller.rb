@@ -1,5 +1,7 @@
 class EmployeesController < ApplicationController
   before_action :set_employee, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!
+  before_filter :owns_employee, only: [:show, :edit, :update, :destroy]
 
   # GET /employees
   # GET /employees.json
@@ -71,6 +73,12 @@ class EmployeesController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def owns_employee
+      if !user_signed_in? || current_user != Employee.find(params[:id]).user
+        redirect_to employees_path, error: "You don't have permissions"
+      end
+    end
+
     def set_employee
       @employee = Employee.find(params[:id])
     end

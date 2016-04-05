@@ -1,14 +1,17 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @employee.name %>
-</p>
-
-<p>
-  <strong>Job:</strong>
-  <%= @employee.job %>
-</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name:</th>
+      <th>Job:</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @employee.name %></td>
+      <td><%= @employee.job %></td>
+  </tbody>
+</table>
 
 <%= link_to 'Edit', edit_company_employee_path(@company, @employee), class: "btn btn-default" %>
-<%= link_to 'Back', company_path(@company),  class: "btn btn-default" %>
+<%= link_to 'Fire!', company_employee_path(@company, @employee), method: :delete, data: { confirm: "Are You really want to fire this employee?" }, class: "btn btn-danger" %>
+ | <%= link_to 'Back', company_path(@company), class: "btn btn-default" %>

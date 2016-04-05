@@ -1,36 +1,34 @@
-<p id="notice"><%= notice %></p>
-
 <% if user_signed_in? %>
-  <% if !user_has_companies(current_user) %>
+  <% if current_user.companies.count == 0 %>
     <h3>To add company, click the button below</h3><br />
     <%= link_to 'New Company', new_company_path, :class => "btn btn-primary" %>
   <% else %>
-<h1>Your Companies</h1>
+    <h1>Your Companies</h1>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @companies.each do |company| %>
-      <% if current_user == company.user %>
+    <table class="table">
+      <thead>
         <tr>
-          <td><%= link_to company.name, company %></td>
-          <td><%= company.description %></td>
-          <td><%= link_to 'Edit', edit_company_path(company), :class => "btn btn-default" %></td>
+          <th>Name</th>
+          <th>Description</th>
+          <th colspan="3"></th>
         </tr>
-      <% end %>
-    <% end %>
-  </tbody>
-</table>
-<br>
-<%= link_to 'New Company', new_company_path, :class => "btn btn-primary" %>
-<% end %>
+      </thead>
+
+      <tbody>
+        <% @companies.each do |company| %>
+          <% if current_user == company.user %>
+            <tr>
+              <td><%= link_to company.name, company %></td>
+              <td><%= company.description %></td>
+              <td><%= link_to 'Edit', edit_company_path(company), :class => "btn btn-default" %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+    <br>
+    <%= link_to 'New Company', new_company_path, :class => "btn btn-primary" %>
+  <% end %>
 <% else %>
   <h1>Welcome to Company Manager</h1>
   <h3>To start manage Your companies, please:</h3>
