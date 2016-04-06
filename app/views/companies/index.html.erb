@@ -3,39 +3,53 @@
     <h3>To add company, click the button below</h3><br />
     <%= link_to 'New Company', new_company_path, :class => "btn btn-primary" %>
   <% else %>
-    <h1>Your Companies</h1>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10">
 
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Description</th>
-          <th colspan="3"></th>
-        </tr>
-      </thead>
+        <h1>Your Companies</h1>
 
-      <tbody>
-        <% @companies.each do |company| %>
-          <% if current_user == company.user %>
+        <table class="table">
+          <thead>
             <tr>
-              <td><%= link_to company.name, company %></td>
-              <td><%= company.description %></td>
-              <td><%= link_to 'Edit', edit_company_path(company), :class => "btn btn-default" %></td>
+              <th>Name</th>
+              <th>Description</th>
             </tr>
-          <% end %>
-        <% end %>
-      </tbody>
-    </table>
-    <br>
-    <%= link_to 'New Company', new_company_path, :class => "btn btn-primary" %>
+          </thead>
+
+          <tbody>
+            <% @companies.each do |company| %>
+              <% if current_user == company.user %>
+                <tr>
+                  <td><%= link_to company.name, company %></td>
+                  <td><%= company.description %></td>
+                  <td><%= link_to 'Edit', edit_company_path(company), :class => "btn btn-default" %></td>
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <br />
+  <%= link_to 'New Company', new_company_path, :class => "btn btn-primary" %>
   <% end %>
 <% else %>
-  <h1>Welcome to Company Manager</h1>
-  <h3>To start manage Your companies, please:</h3>
-  <br />
-  <ul>
-    <li><%= link_to 'Create', new_user_registration_path %> Your own account</p>
-      <p>or</p>
-    <li><%= link_to 'Log in', new_user_session_path %> with existing account</p>
-  </ul>
+<div class="container">
+  <div class="row">
+    <h1 class="text-center">Welcome to Company Manager!</h1>
+</div>
+</div>
+<br />
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 col-centered">
+      <h3>To start manage Your companies, please:</h3>
+      <br />
+      <p><%= link_to 'Create', new_user_registration_path %> Your own account,</p>
+      <p>or <%= link_to 'Log in', new_user_session_path %> with existing account</p>
+    </div>
+  </div>
+</div>
 <% end %>

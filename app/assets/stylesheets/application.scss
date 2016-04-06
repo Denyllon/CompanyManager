@@ -24,6 +24,20 @@
    }
  }
 
+ .col-md-10 {
+    background-color: #EBEBEB;
+    border: 1px solid;
+    border-color: #D7D7D7;
+    border-radius: 5px;
+ }
+
  .field {
    padding-bottom: 5px;
+ }
+.btn {
+  margin-bottom: 15px;
+}
+ .col-centered {
+     float: none;
+     margin: 0 auto;
  }

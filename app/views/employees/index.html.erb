@@ -1,29 +1,35 @@
 <% if current_user.employees.count == 0 %>
   <h1>You don't have any employees in Your companies yet.</h1>
 <% else %>
-  <h1>All Employees</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-10">
+      <h1>All Employees</h1>
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Name:</th>
-        <th>Company:</th>
-        <th>Job:</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @employees.each do |employee| %>
-        <% if current_user == employee.user %>
+      <table class="table">
+        <thead>
           <tr>
-            <td><%= link_to employee.name, company_employee_path(employee.company, employee) %></td>
-            <td><%= employee.company.name %></td>
-            <td><%= employee.job %></td>
-            <td><%= link_to 'Edit', edit_company_employee_path(employee.company, employee), class: "btn btn-default" %>
-                <%= link_to 'Fire!', company_employee_path(employee.company, employee), class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <th>Name:</th>
+            <th>Company:</th>
+            <th>Job:</th>
           </tr>
-        <% end %>
-      <% end %>
-    </tbody>
-  </table>
+        </thead>
+
+        <tbody>
+          <% @employees.each do |employee| %>
+            <% if current_user == employee.user %>
+              <tr>
+                <td><%= link_to employee.name, company_employee_path(employee.company, employee) %></td>
+                <td><%= employee.company.name %></td>
+                <td><%= employee.job %></td>
+                <td><%= link_to 'Edit', edit_company_employee_path(employee.company, employee), class: "btn btn-default" %>
+                    <%= link_to 'Fire!', company_employee_path(employee.company, employee), class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
 <% end %>
