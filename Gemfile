@@ -7,6 +7,7 @@ gem 'rails', '4.2.6'
 gem 'devise'
 # Use HAML
 gem 'haml-rails', group: :development
+gem 'haml'
 # Use PostgreSQL for ActiveRecord
 gem 'pg'
 # Use SCSS for stylesheets
