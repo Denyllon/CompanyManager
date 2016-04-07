@@ -1,0 +1,23 @@
+- if current_user.employees.count == 0
+  %h1 You don't have any employees in Your companies yet.
+- else
+  .container
+    .row
+      .col-md-10
+        %h1 All Employees
+        %table.table
+          %thead
+            %tr
+              %th Name:
+              %th Company:
+              %th Job:
+          %tbody
+            - @employees.each do |employee|
+              - if current_user == employee.user
+                %tr
+                  %td= link_to employee.name, company_employee_path(employee.company, employee)
+                  %td= employee.company.name
+                  %td= employee.job
+                  %td
+                    = link_to 'Edit', edit_company_employee_path(employee.company, employee), class: "btn btn-default"
+                    = link_to 'Fire!', company_employee_path(employee.company, employee), class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' }

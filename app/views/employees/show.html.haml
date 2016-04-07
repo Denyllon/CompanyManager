@@ -1,0 +1,16 @@
+.container
+  .row
+    .col-md-10
+      %table.table
+        %thead
+          %tr
+            %th Name:
+            %th Job:
+        %tbody
+          %tr
+            %td= @employee.name
+            %td= @employee.job
+%br/
+= link_to 'Edit', edit_company_employee_path(@company, @employee), class: "btn btn-default"
+= link_to 'Fire!', company_employee_path(@company, @employee), method: :delete, data: { confirm: "Are You really want to fire this employee?" }, class: "btn btn-danger"
+| #{link_to 'Back', company_path(@company), class: "btn btn-default"}

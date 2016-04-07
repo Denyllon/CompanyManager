@@ -5,6 +5,8 @@ ruby '2.3.0'
 gem 'rails', '4.2.6'
 # Use Devise for authentication
 gem 'devise'
+# Use HAML
+gem 'haml-rails', group: :development
 # Use PostgreSQL for ActiveRecord
 gem 'pg'
 # Use SCSS for stylesheets

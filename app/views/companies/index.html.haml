@@ -1,0 +1,39 @@
+- if user_signed_in?
+  - if current_user.companies.count == 0
+    %h3 To add company, click the button below
+    %br/
+    = link_to 'New Company', new_company_path, :class => "btn btn-primary"
+  - else
+    .container
+      .row
+        .col-md-10
+          %h1 Your Companies
+          %table.table
+            %thead
+              %tr
+                %th Name
+                %th Description
+            %tbody
+              - @companies.each do |company|
+                - if current_user == company.user
+                  %tr
+                    %td= link_to company.name, company
+                    %td= company.description
+                    %td= link_to 'Edit', edit_company_path(company), :class => "btn btn-default"
+    %br/
+    = link_to 'New Company', new_company_path, :class => "btn btn-primary"
+- else
+  .container
+    .row
+      %h1.text-center Welcome to Company Manager!
+  %br/
+  .container
+    .row
+      .col-md-10.col-centered
+        %h3 To start manage Your companies, please:
+        %br/
+        %p
+          = link_to 'Create', new_user_registration_path
+          Your own account,
+        %p
+          or #{link_to 'Log in', new_user_session_path} with existing account

@@ -1,0 +1,22 @@
+.container
+  .row
+    .col-md-10
+      %h1
+        %strong= @company.name
+        \- #{@company.description}
+      %br/
+      %h4
+        Employees of #{@company.name}
+      %table.table
+        %tr
+          %th Name:
+          %th Job:
+        - @company.employees.each do |employee|
+          %tr
+            %td= link_to employee.name, company_employee_path(@company, employee)
+            %td= employee.job
+%br/
+= link_to 'Add Employee', new_company_employee_path(@company), :class => "btn btn-primary"
+| #{link_to 'Edit Company', edit_company_path(@company), class: "btn btn-default"}
+\#{link_to 'Delete Company', @company, method: :delete, data: { confirm: 'Are You really sure to delete this company?' }, :class => "btn btn-danger"}
+| #{link_to 'Back', companies_path, class: "btn btn-default"}
