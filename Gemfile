@@ -27,6 +27,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Bootsrap framework
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'bootstrap-sass-extras'
+# Use rails_12factor to enable Heroku features
+gem 'rails_12factor', group: :production
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
