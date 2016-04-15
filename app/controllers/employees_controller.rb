@@ -7,6 +7,7 @@ class EmployeesController < ApplicationController
   # GET /employees.json
   def index
     @employees = Employee.all
+    session[:return_to] = request.original_fullpath
   end
 
   # GET /employees/1
@@ -14,6 +15,7 @@ class EmployeesController < ApplicationController
   def show
     @company = Company.find(params[:company_id])
     @employee = Employee.find(params[:id])
+    session[:return_to] = request.original_fullpath
   end
 
   # GET /employees/new
@@ -26,7 +28,6 @@ class EmployeesController < ApplicationController
   def edit
     @company = Company.find(params[:company_id])
     @employee = Employee.find(params[:id])
-    session[:return_to] ||= request.referer
   end
 
   # POST /employees
@@ -66,7 +67,7 @@ class EmployeesController < ApplicationController
   def destroy
     @employee.destroy
     respond_to do |format|
-      format.html { redirect_to employees_url, notice: 'Employee was successfully destroyed.' }
+      format.html { redirect_to :back, notice: 'Employee was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

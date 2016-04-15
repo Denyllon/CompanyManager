@@ -1,20 +1,25 @@
 .container
   .row
     .col-md-10
-      %h1
+      %h1.text-center
         %strong= @company.name
         \- #{@company.description}
       %br/
-      %h4
-        Employees of #{@company.name}
-      %table.table
-        %tr
-          %th Name:
-          %th Job:
-        - @company.employees.each do |employee|
+      - if current_user.employees.count > 0
+        %h4
+          Employees of #{@company.name}
+        %table.table
           %tr
-            %td= link_to employee.name, company_employee_path(@company, employee)
-            %td= employee.job
+            %th Name:
+            %th Job:
+          - @company.employees.each do |employee|
+            %tr
+              %td= link_to employee.name, company_employee_path(@company, employee)
+              %td= employee.job
+              %td= link_to 'Fire!', company_employee_path(@company, employee), method: :delete, data: { confirm: 'Are You really sure to fire this employee?' }, :class => "btn btn-danger"
+      - else
+        %h4.text-center
+          You don't have any employees in this company yet. Please add employee.
 %br/
 = link_to 'Add Employee', new_company_employee_path(@company), :class => "btn btn-primary"
 | #{link_to 'Edit Company', edit_company_path(@company), class: "btn btn-default"}

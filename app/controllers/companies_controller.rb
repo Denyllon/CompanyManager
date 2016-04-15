@@ -11,6 +11,7 @@ class CompaniesController < ApplicationController
   # GET /companies/1
   # GET /companies/1.json
   def show
+    session[:return_to] = request.original_fullpath
   end
 
   # GET /companies/new
