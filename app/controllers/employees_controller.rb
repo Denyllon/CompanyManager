@@ -7,7 +7,7 @@ class EmployeesController < ApplicationController
   # GET /employees.json
   def index
     @employees = Employee.all
-    session[:return_to] = request.original_fullpath
+    # session[:return_to] = request.original_fullpath
   end
 
   # GET /employees/1
@@ -15,7 +15,7 @@ class EmployeesController < ApplicationController
   def show
     @company = Company.find(params[:company_id])
     @employee = Employee.find(params[:id])
-    session[:return_to] = request.original_fullpath
+    # session[:return_to] = request.original_fullpath
   end
 
   # GET /employees/new
